@@ -7,6 +7,7 @@ on:
             - 'force-app/main/default/**/*'
 
 env:
+    NODE_VERSION: 18.16.0
     TARGET_ORG_AUTH_URL: ${{ secrets.TARGET_ORG_AUTH_URL }}
     TARGET_ORG_LOGIN_USER: ${{ secrets.TARGET_ORG_LOGIN_USER }}
 
@@ -24,6 +25,10 @@ jobs:
                   mkdir ~/sfdx
                   tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
                   echo "$HOME/sfdx/bin" >> $GITHUB_PATH
+            - name: Setup Node.js
+              uses: actions/setup-node@v2
+              with:
+                  node-version: ${{ env.NODE_VERSION }}
             - name: Authorize org
               run: |
                   printf $TARGET_ORG_AUTH_URL >> auth.json
