@@ -6,14 +6,9 @@ CURRENT_BRANCH=$1
 SOURCE_BRANCH=$2
 STEPS=$3
 
-FILES_TO_DELETE=""
-ORIGINAL_FILES="$(git diff -w --ignore-blank-lines --name-only --diff-filter="D" "${SOURCE_BRANCH}" "${CURRENT_BRANCH}" "force-app/") | sed 's/.cls-meta.xml/.cls/g' | sed 's/.trigger-meta.xml/.trigger/g' | sed s/\"//g | uniq)"
-echo "ORIGINALFILES"$ORIGINAL_FILES
-for FILE in $ORIGINAL_FILES; do
-    FILES_TO_DELETE=$FILES_TO_DELETE"${FILE//\$/\\\$},"
-done
-FILES_TO_DELETE_SIZE=$(echo -n "$FILES_TO_DELETE" | wc -c)
 FILES_TO_CHANGE="$(getFilesByFilter "${CURRENT_BRANCH}" "${SOURCE_BRANCH}" "ACMRT" "force-app/")"
+FILES_TO_DELETE_SIZE=$(echo -n "$FILES_TO_DELETE" | wc -c)
+FILES_TO_DELETE="$(getFilesByFilter "${CURRENT_BRANCH}" "${SOURCE_BRANCH}" "D" "force-app/")"
 FILES_TO_CHANGE_SIZE=$(echo -n "$FILES_TO_CHANGE" | wc -c)
 
 COMMAND="sfdx force:source:deploy -p \"${FILES_TO_CHANGE::-1}\" -u ${USER_EMAIL}"
