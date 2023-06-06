@@ -7,15 +7,22 @@ SOURCE_BRANCH=$2
 STEPS=$3
 
 FILES_TO_CHANGE="$(getFilesByFilter "${CURRENT_BRANCH}" "${SOURCE_BRANCH}" "ACMRT" "force-app/")"
-FILES_TO_DELETE_SIZE=$(echo -n "$FILES_TO_DELETE" | wc -c)
-FILES_TO_DELETE="$(getFilesByFilter "${CURRENT_BRANCH}" "${SOURCE_BRANCH}" "D" "force-app/")"
 FILES_TO_CHANGE_SIZE=$(echo -n "$FILES_TO_CHANGE" | wc -c)
 
-COMMAND="sfdx force:source:deploy -p \"${FILES_TO_CHANGE::-1}\" -u ${USER_EMAIL}"
-COMMAND2="sfdx force:source:delete -p \"${FILES_TO_DELETE::-1}\" -u ${USER_EMAIL} -r"
+FILES_TO_DELETE="$(getFilesByFilter "${CURRENT_BRANCH}" "${SOURCE_BRANCH}" "D" "force-app/")"
+FILES_TO_DELETE_SIZE=$(echo -n "$FILES_TO_DELETE" | wc -c)
+
+if [[ ${FILES_TO_DELETE_SIZE} -gt 0 ]]; then
+    COMMAND2="sfdx force:source:delete -p \"${FILES_TO_DELETE::-1}\" -u ${USER_EMAIL} -r"
+fi
+if [[ ${FILES_TO_CHANGE_SIZE} -gt 0 ]]; then
+    COMMAND="sfdx force:source:deploy -p \"${FILES_TO_CHANGE::-1}\" -u ${USER_EMAIL}"
+fi
 
 printf "\n$COMMAND\n\n"
 printf "\n$COMMAND2\n\n"
+printf "\n$FILES_TO_CHANGE_SIZE\n\n"
+printf "\n$FILES_TO_DELETE_SIZE\n\n"
 
 if [[ -z ${STEPS} ]]; then
 	COMMAND=$COMMAND" -l RunLocalTests -c"
