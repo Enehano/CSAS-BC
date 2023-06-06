@@ -10,6 +10,7 @@ env:
     NODE_VERSION: 18.16.0
     TARGET_ORG_AUTH_URL: ${{ secrets.TARGET_ORG_AUTH_URL }}
     TARGET_ORG_LOGIN_USER: ${{ secrets.TARGET_ORG_LOGIN_USER }}
+    SHA_BEFORE: ${{ github.event.before }}
 
 jobs:
     deploy:
