@@ -30,7 +30,7 @@ jobs:
               run: |
                   rm -rf ~/.sf
                   rm -rf ~/.sfdx
-                  printf "$TARGET_ORG_AUTH_URL" > auth.json
+                  echo "$TARGET_ORG_AUTH_URL" > auth.json
                   sfdx auth:sfdxurl:store -f auth.json -s
                   rm auth.json
             - name: Validate with test
