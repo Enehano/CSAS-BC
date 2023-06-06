@@ -14,7 +14,7 @@ FILES_TO_DELETE_SIZE=$(echo -n "$FILES_TO_DELETE" | wc -c)
 
 echo "FILES_TO_DELETE: "$FILES_TO_DELETE
 
-COM="git diff -w --ignore-blank-lines --name-only --diff-filter=D ${SOURCE_BRANCH} ${CURRENT_BRANCH} force-app"
+COM="git diff -w --ignore-blank-lines --name-only --diff-filter=D ${SOURCE_BRANCH} ${CURRENT_BRANCH} ./force-app/"
 echo "COM: "$COM
 
 # ORIGINAL_FILES=$(git diff -w --ignore-blank-lines --name-only --diff-filter="D" ${SOURCE_BRANCH} ${CURRENT_BRANCH} force-app | sed 's/.cls-meta.xml/.cls/g' | sed 's/.trigger-meta.xml/.trigger/g' | sed s/\"//g | uniq)
