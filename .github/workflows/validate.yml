@@ -37,6 +37,8 @@ jobs:
                   sfdx update
             - name: Validate with test
               run: |
+                  echo "origin/$GITHUB_HEAD_REF"
+                  echo "origin/$GITHUB_BASE_REF"
                   export USER_EMAIL="${TARGET_ORG_LOGIN_USER}"
                   git config diff.renamelimit 10000
                   ulimit -s 131072
