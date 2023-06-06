@@ -7,7 +7,6 @@ on:
             - 'force-app/main/default/**/*'
 
 env:
-    NODE_VERSION: 18.16.0
     TARGET_ORG_AUTH_URL: ${{ secrets.TARGET_ORG_AUTH_URL }}
     TARGET_ORG_LOGIN_USER: ${{ secrets.TARGET_ORG_LOGIN_USER }}
 
@@ -21,20 +20,15 @@ jobs:
                   fetch-depth: 2
             - name: Install Salesforce CLI
               run: |
-                  wget -q https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
+                  wget -q https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
                   mkdir ~/sfdx
-                  tar xJf sfdx-linux-amd64.tar.xz -C ~/sfdx --strip-components 1
+                  tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
                   echo "$HOME/sfdx/bin" >> $GITHUB_PATH
-            - name: Setup Node.js
-              uses: actions/setup-node@v2
-              with:
-                  node-version: ${{ env.NODE_VERSION }}
             - name: Authorize org
               run: |
                   printf $TARGET_ORG_AUTH_URL >> auth.json
                   sfdx auth:sfdxurl:store -f auth.json -s
                   rm auth.json
-                  sfdx update
             - name: Validate with test
               run: |
                   export USER_EMAIL="${TARGET_ORG_LOGIN_USER}"
