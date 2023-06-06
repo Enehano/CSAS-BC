@@ -12,20 +12,6 @@ FILES_TO_CHANGE_SIZE=$(echo -n "$FILES_TO_CHANGE" | wc -c)
 FILES_TO_DELETE="$(getFilesByFilter ${CURRENT_BRANCH} ${SOURCE_BRANCH} D force-app)"
 FILES_TO_DELETE_SIZE=$(echo -n "$FILES_TO_DELETE" | wc -c)
 
-echo "FILES_TO_DELETE: "$FILES_TO_DELETE
-
-COM="git diff -w --ignore-blank-lines --name-only --diff-filter=D ${SOURCE_BRANCH} ${CURRENT_BRANCH} ./force-app/"
-echo "COM: "$COM
-
-# ORIGINAL_FILES=$(git diff -w --ignore-blank-lines --name-only --diff-filter="D" ${SOURCE_BRANCH} ${CURRENT_BRANCH} force-app | sed 's/.cls-meta.xml/.cls/g' | sed 's/.trigger-meta.xml/.trigger/g' | sed s/\"//g | uniq)
-ORIGINAL_FILES=$(eval ${COM}) | sed 's/.cls-meta.xml/.cls/g' | sed 's/.trigger-meta.xml/.trigger/g' | sed s/\"//g | uniq
-DEL=""
-for FILE in $ORIGINAL_FILES; do
-    touch $FILE
-    DEL="${DEL}${FILE//\$/\\\$},"
-done
-echo "DEL: "$DEL
-
 if [[ ${FILES_TO_DELETE_SIZE} -gt 0 ]]; then
     COMMAND2="sfdx force:source:delete -p \"${FILES_TO_DELETE::-1}\" -u ${USER_EMAIL} -r"
 fi
