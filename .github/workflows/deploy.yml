@@ -36,8 +36,6 @@ jobs:
                   rm auth.json
             - name: Deploy
               run: |
-                  rm -rf ~/.sf
-                  rm -rf ~/.sfdx
                   export USER_EMAIL="${TARGET_ORG_LOGIN_USER}"
                   git config diff.renamelimit 10000
                   ulimit -s 131072
