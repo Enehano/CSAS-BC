@@ -8,27 +8,39 @@ STEPS=$3
 
 FILES_TO_CHANGE="$(getFilesByFilter "${CURRENT_BRANCH}" "${SOURCE_BRANCH}" "ACMRT" "force-app/")"
 FILES_TO_CHANGE_SIZE=$(echo -n "$FILES_TO_CHANGE" | wc -c)
-
-printf "${FILES_TO_CHANGE}\n\n"
+FILES_TO_DELETE="$(getFilesByFilter "${CURRENT_BRANCH}" "${SOURCE_BRANCH}" "D" "force-app/")"
+FILES_TO_DELETE_SIZE=$(echo -n "$FILES_TO_DELETE" | wc -c)
 
 COMMAND="sfdx force:source:deploy -p \"${FILES_TO_CHANGE::-1}\" -u ${USER_EMAIL}"
+COMMAND2="sfdx force:source:delete -p \"${FILES_TO_CHANGE::-1}\" -u ${USER_EMAIL} -r"
 
 printf "\n$COMMAND\n\n"
 
 if [[ -z ${STEPS} ]]; then
 	COMMAND=$COMMAND" -l RunLocalTests -c"
+	COMMAND2=$COMMAND2" -l RunLocalTests -c"
 elif [[ ${STEPS} == "DEPLOY_WITH_TEST" ]]; then
 	COMMAND=$COMMAND" -l RunLocalTests"
+	COMMAND2=$COMMAND2" -l RunLocalTests"
 elif [[ ${STEPS} == "DEPLOY" ]]; then
 	COMMAND=$COMMAND" "
+	COMMAND2=$COMMAND2" "
 elif [[ ${STEPS} == "VALIDATE" ]]; then
 	COMMAND=$COMMAND" -c"
+	COMMAND2=$COMMAND2" -c"
 else
 	COMMAND=$COMMAND" -l RunLocalTests -c"
+	COMMAND2=$COMMAND2" -l RunLocalTests -c"
 fi
 
 if [[ ${FILES_TO_CHANGE_SIZE} -gt 0 ]]; then
 	eval "${COMMAND}"
 else
 	echo "No files to deploy"
+fi
+
+if [[ ${FILES_TO_DELETE_SIZE} -gt 0 ]]; then
+	eval "${COMMAND2}"
+else
+	echo "No files to delete"
 fi
