@@ -9,6 +9,8 @@ STEPS=$3
 FILES_TO_CHANGE="$(getFilesByFilter "${CURRENT_BRANCH}" "${SOURCE_BRANCH}" "ACMRT" "force-app/")"
 FILES_TO_CHANGE_SIZE=$(echo -n "$FILES_TO_CHANGE" | wc -c)
 
+printf "${FILES_TO_CHANGE}\n\n"
+
 COMMAND="sfdx force:source:deploy -p \"${FILES_TO_CHANGE::-1}\" -u ${USER_EMAIL}"
 
 printf "\n$COMMAND\n\n"
