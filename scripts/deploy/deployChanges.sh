@@ -8,11 +8,11 @@ STEPS=$3
 
 FILES_TO_CHANGE="$(getFilesByFilter "${CURRENT_BRANCH}" "${SOURCE_BRANCH}" "ACMRT" "force-app/")"
 FILES_TO_CHANGE_SIZE=$(echo -n "$FILES_TO_CHANGE" | wc -c)
-FILES_TO_DELETE="$(getFilesByFilter "${SOURCE_BRANCH}" "${CURRENT_BRANCH}" "D" "force-app/")"
+FILES_TO_DELETE="$(getFilesByFilter "${CURRENT_BRANCH}" "${SOURCE_BRANCH}" "D" "force-app/")"
 FILES_TO_DELETE_SIZE=$(echo -n "$FILES_TO_DELETE" | wc -c)
 
 COMMAND="sfdx source:deploy -p \"${FILES_TO_CHANGE::-1}\" -u ${USER_EMAIL}"
-COMMAND2="sfdx source:delete -p \"${FILES_TO_CHANGE::-1}\" -u ${USER_EMAIL} -r"
+COMMAND2="sfdx source:delete -p \"${FILES_TO_DELETE::-1}\" -u ${USER_EMAIL} -r"
 
 printf "\n$COMMAND\n\n"
 printf "\n$COMMAND2\n\n"
