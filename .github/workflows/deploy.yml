@@ -39,4 +39,4 @@ jobs:
                   export USER_EMAIL="${TARGET_ORG_LOGIN_USER}"
                   git config diff.renamelimit 10000
                   ulimit -s 131072
-                  ./scripts/deploy/deployChanges.sh "origin/develop" "$SHA_BEFORE" DEPLOY "$GITHUB_WORKSPACE/force-app"
+                  bash ./scripts/deploy/deployChanges.sh "origin/develop" "$SHA_BEFORE" DEPLOY "$GITHUB_WORKSPACE/force-app"

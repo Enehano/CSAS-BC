@@ -41,4 +41,4 @@ jobs:
                   ulimit -s 131072
                   git fetch origin $GITHUB_HEAD_REF
                   git fetch origin $GITHUB_BASE_REF
-                  ./scripts/deploy/deployChanges.sh "origin/$GITHUB_HEAD_REF" "origin/$GITHUB_BASE_REF" VALIDATE_WITH_TEST "$GITHUB_WORKSPACE/force-app"
+                  bash ./scripts/deploy/deployChanges.sh "origin/$GITHUB_HEAD_REF" "origin/$GITHUB_BASE_REF" VALIDATE_WITH_TEST "$GITHUB_WORKSPACE/force-app"
