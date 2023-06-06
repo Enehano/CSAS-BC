@@ -10,6 +10,7 @@ getFilesByFilter() {
 	ORIGINAL_FILES=$(git diff -w --ignore-blank-lines --name-only --diff-filter=${FILTER} "${CURRENT_BRANCH}" "${SOURCE_BRANCH}" ${FOLDER} | sed 's/.cls-meta.xml/.cls/g' | sed 's/.trigger-meta.xml/.trigger/g' | sed s/\"//g | uniq)
 
 	for FILE in $ORIGINAL_FILES; do
+        touch $FILE
 		echo "${FILE//\$/\\\$},"
 	done
 }
