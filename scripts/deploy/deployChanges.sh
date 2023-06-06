@@ -19,11 +19,6 @@ if [[ ${FILES_TO_CHANGE_SIZE} -gt 0 ]]; then
     COMMAND="sfdx force:source:deploy -p \"${FILES_TO_CHANGE::-1}\" -u ${USER_EMAIL}"
 fi
 
-printf "\n$COMMAND\n\n"
-printf "\n$COMMAND2\n\n"
-printf "\n$FILES_TO_CHANGE_SIZE\n\n"
-printf "\n$FILES_TO_DELETE_SIZE\n\n"
-
 if [[ -z ${STEPS} ]]; then
 	COMMAND=$COMMAND" -l RunLocalTests -c"
 	COMMAND2=$COMMAND2" -l RunLocalTests -c"
@@ -42,12 +37,14 @@ else
 fi
 
 if [[ ${FILES_TO_DELETE_SIZE} -gt 0 ]]; then
+    printf "\n$COMMAND2\n\n"
 	eval "${COMMAND2}"
 else
 	echo "No files to delete"
 fi
 
 if [[ ${FILES_TO_CHANGE_SIZE} -gt 0 ]]; then
+    printf "\n$COMMAND\n\n"
 	eval "${COMMAND}"
 else
 	echo "No files to deploy"
