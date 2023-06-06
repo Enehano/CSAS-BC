@@ -6,8 +6,6 @@ CURRENT_BRANCH=$1
 SOURCE_BRANCH=$2
 STEPS=$3
 
-mkdir -p force-app
-
 FILES_TO_CHANGE="$(getFilesByFilter ${CURRENT_BRANCH} ${SOURCE_BRANCH} ACMRT force-app)"
 FILES_TO_CHANGE_SIZE=$(echo -n "$FILES_TO_CHANGE" | wc -c)
 
