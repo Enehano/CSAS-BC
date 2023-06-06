@@ -17,6 +17,9 @@ COMMAND2="sfdx source:delete -p \"${FILES_TO_DELETE::-1}\" -u ${USER_EMAIL} -r"
 printf "\n$COMMAND\n\n"
 printf "\n$COMMAND2\n\n"
 
+TEST="$(git diff -w --ignore-blank-lines --name-only --diff-filter="D" "${SOURCE_BRANCH}" "${CURRENT_BRANCH}" "force-app/") | sed 's/.cls-meta.xml/.cls/g' | sed 's/.trigger-meta.xml/.trigger/g' | sed s/\"//g | uniq)"
+echo "$TEST"
+
 if [[ -z ${STEPS} ]]; then
 	COMMAND=$COMMAND" -l RunLocalTests -c"
 	COMMAND2=$COMMAND2" -l RunLocalTests -c"
