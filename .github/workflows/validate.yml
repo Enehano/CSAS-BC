@@ -21,10 +21,7 @@ jobs:
                   fetch-depth: 2
             - name: Install Salesforce CLI
               run: |
-                  wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
-                  mkdir ~/sfdx
-                  tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
-                  echo "$HOME/sfdx/bin" >> $GITHUB_PATH
+                  npm install --global sfdx-cli@latest
             - name: Setup Node.js
               uses: actions/setup-node@v2
               with:
