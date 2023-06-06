@@ -7,7 +7,7 @@ on:
             - 'force-app/main/default/**/*'
 
 env:
-    NODE_VERSION: 18.16.0
+    NODE_VERSION: 20.2.0
     TARGET_ORG_AUTH_URL: ${{ secrets.TARGET_ORG_AUTH_URL }}
     TARGET_ORG_LOGIN_USER: ${{ secrets.TARGET_ORG_LOGIN_USER }}
     SHA_BEFORE: ${{ github.event.before }}
@@ -22,21 +22,22 @@ jobs:
                   fetch-depth: 2
             - name: Install Salesforce CLI
               run: |
-                  wget -q https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
-                  mkdir ~/sfdx
-                  tar xJf sfdx-linux-amd64.tar.xz -C ~/sfdx --strip-components 1
-                  echo "$HOME/sfdx/bin" >> $GITHUB_PATH
+                  npm install --global sfdx-cli@latest
             - name: Setup Node.js
               uses: actions/setup-node@v2
               with:
                   node-version: ${{ env.NODE_VERSION }}
             - name: Authorize org
               run: |
-                  printf $TARGET_ORG_AUTH_URL >> auth.json
+                  rm -rf ~/.sf
+                  rm -rf ~/.sfdx
+                  echo "$TARGET_ORG_AUTH_URL" > auth.json
                   sfdx auth:sfdxurl:store -f auth.json -s
                   rm auth.json
             - name: Deploy
               run: |
+                  rm -rf ~/.sf
+                  rm -rf ~/.sfdx
                   export USER_EMAIL="${TARGET_ORG_LOGIN_USER}"
                   git config diff.renamelimit 10000
                   ulimit -s 131072
