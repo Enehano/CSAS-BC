@@ -1,0 +1,116 @@
+{
+	"features": [
+		"API",
+		"AuthorApex",
+		"ChangeDataCapture",
+		"ContactsToMultipleAccounts",
+		"CPQ",
+		"CustomNotificationType",
+		"DebugApex",
+		"FieldAuditTrail",
+		"IndustriesMfgAccountForecast",
+		"LightningSalesConsole",
+		"ProcessBuilder",
+		"RecordTypes",
+		"SalesUser",
+		"Workflow",
+		"WorkflowFlowActionFeature",
+		"Communities",
+		"ForceComPlatform",
+		"CustomerCommunity",
+		"WorkThanksPref"
+	],
+	"orgName": "ČSAS Boot Camp",
+	"edition": "Enterprise",
+	"hasSampleData": false,
+	"language": "en_US",
+	"country": "CZ",
+	"settings": {
+		"accountSettings": {
+			"enableAccountHistoryTracking": true,
+			"enableContactHistoryTracking": true,
+			"enableRelateContactToMultipleAccounts": true,
+			"showViewHierarchyLink": true
+		},
+		"actionsSettings": {
+			"enableDefaultQuickActionsOn": true,
+			"enableThirdPartyActions": true
+		},
+		"addressSettings": {
+			"countriesAndStates": null
+		},
+		"apexSettings": {
+			"enableAggregateCodeCoverageOnly": true,
+			"enableApexApprovalLockUnlock": true,
+			"enableApexCtrlImplicitWithSharingPref": true,
+			"enableApexPropertyGetterPref": true,
+			"enableAuraApexCtrlAuthUserAccessCheckPref": true,
+			"enableCompileOnDeploy": true,
+			"enableGaplessTestAutoNum": true,
+			"enableMngdCtrlActionAccessPref": true,
+			"enableNonCertifiedApexMdCrud": true,
+			"enableSecureNoArgConstructorPref": true
+		},
+		"appExperienceSettings": {
+			"doesHideAllAppsInAppLauncher": false
+		},
+		"chatterSettings": {
+			"enableChatter": true
+		},
+		"contentSettings": {
+			"enableContent": true
+		},
+		"emailTemplateSettings": {
+			"enableTemplateEnhancedFolderPref": true
+		},
+		"enhancedNotesSettings": {
+			"enableEnhancedNotes": true
+		},
+		"ideasSettings": {
+			"enableIdeaThemes": true,
+			"enableIdeas": true
+		},
+		"invocableActionSettings": {
+			"isPartialSaveAllowed": true
+		},
+		"languageSettings": {
+			"enableEndUserLanguages": true,
+			"enableLocalNamesForStdObjects": true,
+			"enableTranslationWorkbench": true
+		},
+		"leadConfigSettings": {
+			"doesTrackHistory": true
+		},
+		"lightningExperienceSettings": {
+			"enableS1DesktopEnabled": true
+		},
+		"mobileSettings": {
+			"enableS1EncryptedStoragePref2": false
+		},
+		"opportunitySettings": {
+			"enableUpdateReminders": true,
+			"enableOpportunityFieldHistoryTracking": true,
+			"customizableProductSchedulesEnabled": true
+		},
+		"orderSettings": {
+			"enableOrders": true
+		},
+		"quoteSettings": {
+			"enableQuote": true
+		},
+		"securitySettings": {
+			"enableAdminLoginAsAnyUser": true,
+			"enableAuditFieldsInactiveOwner": true
+		},
+		"territory2Settings": {
+			"enableTerritoryManagement2": true
+		},
+		"communitiesSettings": {
+			"enableNetworksEnabled": true
+		},
+		"workDotComSettings": {
+			"enableWorkThanksPref": true,
+			"enableProfileSkills": true
+		}
+	}
+}

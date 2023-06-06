@@ -1,0 +1,53 @@
+{
+	"workbench.colorCustomizations": {
+		"activityBar.background": "#093073",
+		"activityBar.inactiveForeground": "#000000",
+		"activityBar.activeBorder": "#ffffff6c",
+		"titleBar.activeBackground": "#0a337a",
+		"titleBar.activeForeground": "#ffffff36"
+	},
+	"salesforcedx-vscode-lightning.activationMode": "always",
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[cmp]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[apex]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[trigger]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[page]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[evt]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"files.associations": {
+		"*.component": "html",
+		"*.cmp": "html",
+		"*.page": "html"
+	},
+	"eslint.format.enable": true,
+	"eslint.enable": true,
+	"editor.detectIndentation": false,
+	"apexPMD.runOnFileOpen": true,
+	"apexPMD.enableCache": true,
+	"editor.formatOnSave": true,
+	"apexPMD.rulesets": [
+		"config/pmd.xml"
+	],
+	"salesforcedx-vscode-core.show-cli-success-msg": false,
+	"git.ignoreLimitWarning": true
+}

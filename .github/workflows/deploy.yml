@@ -1,0 +1,42 @@
+name: Deploy
+on:
+    push:
+        branches:
+            - develop
+        paths:
+            - 'force-app/main/default/**/*'
+
+env:
+    NODE_VERSION: 18.16.0
+    TARGET_ORG_AUTH_URL: ${{ secrets.TARGET_ORG_AUTH_URL }}
+    TARGET_ORG_LOGIN_USER: ${{ secrets.TARGET_ORG_LOGIN_USER }}
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+              with:
+                  fetch-depth: 2
+            - name: Install Salesforce CLI
+              run: |
+                  wget -q https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
+                  mkdir ~/sfdx
+                  tar xJf sfdx-linux-amd64.tar.xz -C ~/sfdx --strip-components 1
+                  echo "$HOME/sfdx/bin" >> $GITHUB_PATH
+            - name: Setup Node.js
+              uses: actions/setup-node@v2
+              with:
+                  node-version: ${{ env.NODE_VERSION }}
+            - name: Authorize org
+              run: |
+                  printf $TARGET_ORG_AUTH_URL >> auth.json
+                  sfdx auth:sfdxurl:store -f auth.json -s
+                  rm auth.json
+            - name: Deploy
+              run: |
+                  export USER_EMAIL="${TARGET_ORG_LOGIN_USER}"
+                  git config diff.renamelimit 10000
+                  ulimit -s 131072
+                  ./scripts/deploy/deployChanges.sh "origin/develop" "$SHA_BEFORE" DEPLOY "$GITHUB_WORKSPACE/force-app"
