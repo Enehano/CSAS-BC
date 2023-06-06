@@ -16,8 +16,8 @@ FILES_TO_DELETE_SIZE=$(echo -n "$FILES_TO_DELETE" | wc -c)
 FILES_TO_CHANGE="$(getFilesByFilter "${CURRENT_BRANCH}" "${SOURCE_BRANCH}" "ACMRT" "force-app/")"
 FILES_TO_CHANGE_SIZE=$(echo -n "$FILES_TO_CHANGE" | wc -c)
 
-COMMAND="sfdx source:deploy -p \"${FILES_TO_CHANGE::-1}\" -u ${USER_EMAIL}"
-COMMAND2="sfdx source:delete -p \"${FILES_TO_DELETE::-1}\" -u ${USER_EMAIL} -r"
+COMMAND="sfdx force:source:deploy -p \"${FILES_TO_CHANGE::-1}\" -u ${USER_EMAIL}"
+COMMAND2="sfdx force:source:delete -p \"${FILES_TO_DELETE::-1}\" -u ${USER_EMAIL} -r"
 
 printf "\n$COMMAND\n\n"
 printf "\n$COMMAND2\n\n"
