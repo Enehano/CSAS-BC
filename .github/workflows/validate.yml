@@ -28,6 +28,8 @@ jobs:
                   node-version: ${{ env.NODE_VERSION }}
             - name: Authorize org
               run: |
+                  rm -rf ~/.sf
+                  rm -rf ~/.sfdx
                   printf $TARGET_ORG_AUTH_URL > auth.json
                   sfdx auth:sfdxurl:store -f auth.json -s
                   rm auth.json
