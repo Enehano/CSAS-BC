@@ -25,7 +25,6 @@ jobs:
                   mkdir ~/sfdx
                   tar xJf sfdx-linux-amd64.tar.xz -C ~/sfdx --strip-components 1
                   echo "$HOME/sfdx/bin" >> $GITHUB_PATH
-                  sfdx update
             - name: Setup Node.js
               uses: actions/setup-node@v2
               with:
@@ -35,6 +34,7 @@ jobs:
                   printf $TARGET_ORG_AUTH_URL >> auth.json
                   sfdx auth:sfdxurl:store -f auth.json -s
                   rm auth.json
+                  sfdx update
             - name: Validate with test
               run: |
                   export USER_EMAIL="${TARGET_ORG_LOGIN_USER}"
