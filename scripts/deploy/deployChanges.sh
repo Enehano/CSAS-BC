@@ -6,7 +6,9 @@ CURRENT_BRANCH=$1
 SOURCE_BRANCH=$2
 STEPS=$3
 
+FILES_TO_DELETE=""
 ORIGINAL_FILES="$(git diff -w --ignore-blank-lines --name-only --diff-filter="D" "${SOURCE_BRANCH}" "${CURRENT_BRANCH}" "force-app/") | sed 's/.cls-meta.xml/.cls/g' | sed 's/.trigger-meta.xml/.trigger/g' | sed s/\"//g | uniq)"
+echo $ORIGINAL_FILES
 for FILE in $ORIGINAL_FILES; do
     FILES_TO_DELETE=$FILES_TO_DELETE"${FILE//\$/\\\$},"
 done
