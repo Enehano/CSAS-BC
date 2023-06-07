@@ -1,0 +1,25 @@
+Instalace VS Code a GIT
+1.	Instalace VS Code ze stránky https://code.visualstudio.com/download.
+2.	Instalace plug-in ve VS Code
+1.	Salesforce Extension Pack
+2.	Salesforce CLI Integration
+3.	Prettier
+4.	Git Graph
+3.	Přihlášení do GITHubu
+4.	Získat credentials do devHubu
+5.	Vytvořit novou složku např. Projects -> Bootcamp
+6.	Git clone url_repo (vygenerovat přes tlačítko Code - HTTPS)
+7.	Restartovat VS Code a otevřít složku s nově vytvořeným projektem
+8.	Autorizace devHubu
+9.	Vytvořit přes script v terminálu “scratchOrg.sh” nový scratch org.
+10.	Otevřít nový scratch org
+11.	Dílčí úkoly vašeho miniprojektu provést na scratch orgu.
+12.	Veškeré změny natáhnout v terminálu přes “sfdx force:source:pull”
+13.	Změny zastagovat a vytvořit commit
+14.	Změny potvrdit (pushnout) v terminálu přes “git push origin HEAD”
+15.	Přepnout do prostředí GitHubu a vytvořit Pull Request
+16.	Vyčkat, než proběhne úspěšně validace (možnost monitorovat v sekci Actions)
+17.	Vyčkat na Code review approval
+18.	Spustit průběh nasazení v GitHubu na vašem Pull Requestu
+19.	Ověřit, že nahrání proběhlo úspěšně v sekci Actions
+20.	Otevřít devHub a ověřit, že vámi provedené změny byly nasazeny.
